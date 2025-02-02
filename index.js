@@ -12,15 +12,8 @@ bot.on("ready", async () => {
     console.log(`${bot.user.username} is online and joining VC...`);
 
     try {
-        const voiceConnection = await bot.joinVoiceChannel(VC_ID);
+        await bot.joinVoiceChannel(VC_ID); // Join the VC
         console.log("Successfully joined voice channel!");
-
-        voiceConnection.on("error", (err) => console.error("VC Error:", err));
-        voiceConnection.on("disconnect", () => {
-            console.log("Disconnected from VC, attempting to rejoin...");
-            bot.joinVoiceChannel(VC_ID).catch(console.error);
-        });
-
     } catch (error) {
         console.error("Error joining VC:", error);
     }
